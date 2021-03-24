@@ -86,10 +86,20 @@ describe Venue do
       venue.add_patron('Bob')
       venue.add_patron('James')
       venue.add_patron('Cat')
-      
+      expect(venue.kick_out).to eq ['Mike', 'Megan', 'Bob', 'James']
     end
 
     it 'will remove patrons until no longer over capacity' do
+      venue = Venue.new('Bluebird', 4)
+      venue.add_patron('Mike')
+      venue.add_patron('Megan')
+      venue.add_patron('Bob')
+      venue.add_patron('James')
+      venue.add_patron('Cat')
+      # adding one more to test out my loop for more than one patron needing the boot
+      venue.add_patron('Jacq')
+      venue.kick_out
+      expect(venue.over_capacity).to eq false
     end
   end
 

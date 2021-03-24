@@ -24,8 +24,14 @@ class Venue
     if @patrons.length <= 4
       return false
     else
-      return true 
+      return true
     end
   end
 
+  def kick_out
+    while @patrons.length > 4
+      @patrons.delete_at(4)
+    end
+    @patrons 
+  end
 end
